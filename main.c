@@ -1,42 +1,43 @@
 #include <stdio.h>
+#include "retangulo.c"
 
-typedef struct Retangulo{
-    float altura;
-    float base;
-}Retangulo;
+int main() {
+    int opcao;
+    do {
+        printf("-------------MENU-------------\n");
+        printf("Digite qual questão deseja rodar (1-3) ou 0 para sair:\n");
+        scanf("%d", &opcao);
+        printf("\n------------------------------\n\n");
 
-void inicializarRetangulo(Retangulo *retangulo, float base, float altura){
-    (*retangulo).altura = altura;
-    (*retangulo).base = base;
-}
+        switch(opcao) {
+            case 1: {
+                Retangulo retangulo;
+                float altura, base;
 
-float calcularArea(Retangulo *retangulo){
-    return (*retangulo).altura * (*retangulo).base;
-}
+                printf("Digite a altura do retângulo: ");
+                scanf("%f", &altura);
+                printf("Digite a base do retângulo: ");
+                scanf("%f", &base);
 
-float calcularPerimetro(Retangulo *retangulo){
-    return 2 * ((*retangulo).altura + (*retangulo).base);
-}
+                inicializarRetangulo(&retangulo, base, altura);
 
-int main()
-{
+                printf("\n-------Informações do Retângulo-------");
+                printf("\nÁrea do retângulo: %.2f", calcularArea(&retangulo));
+                printf("\nPerímetro do retângulo: %.2f\n\n", calcularPerimetro(&retangulo));
 
-    Retangulo retangulo;
-    float altura;
-    float base;
-
-    printf("Digite a altura do retangulo:");
-    scanf("%f", &altura);
-
-    printf("Digite a base do retangulo:");
-    scanf("%f", &base);
-
-    inicializarRetangulo(&retangulo, base, altura);
-
-    printf("\n-------Informacoes do Retangulo-------");
-    printf("\nArea do retangulo: %.2f", calcularArea(&retangulo));
-    printf("\nPerimetro do retangulo: %.2f\n\n", calcularPerimetro(&retangulo));
-
+                break;
+            }
+            case 2:
+                printf("Opção 2 em desenvolvimento...\n\n");
+                break;
+            case 0:
+                printf("\nFinalizando...\n\n");
+                break;
+            default:
+                printf("Valor inválido. Tente novamente.\n\n");
+                break;
+        }
+    } while(opcao != 0);
 
     return 0;
 }
